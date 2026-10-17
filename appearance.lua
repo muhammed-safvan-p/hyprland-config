@@ -9,10 +9,9 @@ if not colors_ok then
 end
 
 hl.config({
-    general = {
-        gaps_in  = 1,
-        gaps_out = 2,
-
+        general = {
+        gaps_in  = 3,
+        gaps_out = 7,
         border_size = 2,
 
         col = {
@@ -23,32 +22,41 @@ hl.config({
             inactive_border = colors.inactive,
         },
 
-        resize_on_border = false,
+        resize_on_border = true,
         allow_tearing = false,
         layout = "dwindle",
     },
 
     decoration = {
-        rounding       = 4,
-        rounding_power = 2,
+        rounding       = 8,
+        rounding_power = 4,
 
-        active_opacity   = 0.97,
-        inactive_opacity = 0.92,
+        active_opacity   = 0.95,
+        inactive_opacity = 0.89,
 
         shadow = {
-            enabled      = false,
-            range        = 8,
+            enabled      = true,
+            range        = 18,
             render_power = 3,
-            color        = 0x66000000,
+            color        = "rgba(0000003b)",
         },
 
         blur = {
-            enabled   = true,
-            size      = 3,
-            passes    = 1,
-            vibrancy  = 0.1696,
+            enabled           = true,
+            size              = 6,
+            passes            = 2,
+            new_optimizations = true,
+            ignore_opacity    = true,
+            vibrancy          = 0.20,
         },
     },
+
+    misc = {
+        disable_hyprland_logo    = true,
+        disable_splash_rendering = true,
+        animate_manual_resizes   = true,
+    },
+
 
     animations = {
         enabled = true,

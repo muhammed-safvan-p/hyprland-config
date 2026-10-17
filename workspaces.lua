@@ -19,20 +19,7 @@ for i = 11, 20 do
     })
 end
 
--- ── Smart Gaps & Borderless Fullscreen ─────────────────────────
-hl.workspace_rule({
-    workspace = "w[tv1]",
-    gaps_out  = 0,
-    gaps_in   = 0,
-    no_border = true,
-})
-
-hl.workspace_rule({
-    workspace = "f[1]",
-    gaps_out  = 0,
-    gaps_in   = 0,
-    no_border = true,
-})
+-- (Single-window and fullscreen layout rules are managed in window_rules.lua)
 
 -- ── Special Scratchpad Workspaces ──────────────────────────────
 hl.workspace_rule({

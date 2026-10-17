@@ -63,6 +63,10 @@ end
 -- SUPER + M             : Shutdown / Exit menu
 bind("M", app("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 
+-- SUPER + L             : Lock screen
+bind("L", app("loginctl lock-session || hyprlock --grace 0"))
+bind("SHIFT + L", app("loginctl lock-session || hyprlock --grace 0"))
+
 -- SUPER + SHIFT + SPACE : Toggle Waybar status bar
 -- Waybar controls: Hold SUPER + SHIFT to peek, release to hide, or SUPER + SHIFT + SPACE to pin/toggle
 bind("SPACE", app("/home/safvan/.config/waybar/peek.sh toggle"))
@@ -109,7 +113,7 @@ bind("SHIFT + P", hl.dsp.window.pseudo())                 -- Pseudo-tile window
 
 
 -- ── 6. Directional Navigation & Content Scrolling ────────────────────────────
--- Focus window with J / L / I / K (Left / Right / Up / Down)
+-- Focus window with J / I / K (Left / Right / Up / Down)
 local directions = {
     ["J"] = "left",
     ["L"] = "right",
