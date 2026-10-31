@@ -77,8 +77,10 @@ hl.bind("SHIFT + SUPER_L", hl.dsp.exec_cmd("/home/safvan/.config/waybar/peek.sh 
 hl.bind("SHIFT + SUPER_R", hl.dsp.exec_cmd("/home/safvan/.config/waybar/peek.sh show"), { non_consuming = true })
 
 
--- SUPER + H             : Switch wallpaper
--- bind("H", app("/home/safvan/.config/hypr/scripts/wallpaper.sh"))
+-- ── Wallpaper Controls ───────────────────────────────────────────────────────
+-- SUPER + W             : Wallpaper gallery selector
+bind("W", app("/home/safvan/.config/hypr/scripts/wallpaper-selector"))
+-- SUPER + SHIFT + = (code:21) / SUPER + MINUS : Quick next/prev wallpaper
 bind("code:21", hl.dsp.exec_cmd('wallpapercli next'))
 bind("MINUS", hl.dsp.exec_cmd('wallpapercli prev'))
 

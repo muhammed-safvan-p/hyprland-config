@@ -1,0 +1,79 @@
+
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+WALLPAPER_DIR="$HOME/Photos/wallpapers"
+THEME="$HOME/.config/rofi/wallpaper-gallery.rasi"
+CACHE="$HOME/.cache/wallpaper-gallery"
+
+for cmd in rofi wallpapercli magick find sort cksum; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        notify-send "Wallpaper Gallery" "Missing dependency: $cmd"
+        exit 1
+    fi
+done
+
+[[ -d "$WALLPAPER_DIR" ]] || {
+    notify-send "Wallpaper Gallery" "Wallpaper directory not found"
+    exit 1
+}
+
+mkdir -p "$CACHE"
+
+mapfile -d '' -t files < <(
+    find "$WALLPAPER_DIR" -type f \
+        \( -iname '*.jpg' -o -iname '*.jpeg' \
+        -o -iname '*.png' -o -iname '*.webp' \
+        -o -iname '*.bmp' -o -iname '*.avif' \) \
+        -print0 | sort -z
+)
+
+((${#files[@]})) || {
+    notify-send "Wallpaper Gallery" "No wallpapers found"
+    exit 1
+}
+
+selected=$(
+    for image in "${files[@]}"; do
+        relative="${image#"$WALLPAPER_DIR"/}"
+        hash=$(printf '%s' "$image" | cksum | awk '{print $1}')
+        thumb="$CACHE/$hash.png"
+
+        # Reuse cached thumbnails; generate missing ones.
+        if [[ ! -s "$thumb" || "$image" -nt "$thumb" ]]; then
+            if ! magick "${image}[0]" \
+                -thumbnail '320x200^' \
+                -gravity center \
+                -extent 320x200 \
+                "$thumb" 2>/dev/null; then
+                continue
+            fi
+        fi
+
+        # Clean display title (strip path and extension)
+        title="${relative%.*}"
+
+        # Rofi dmenu protocol: display clean label plus thumbnail icon.
+        printf '%s\0icon\x1f%s\n' "$title" "$thumb"
+    done |
+    rofi -dmenu -i \
+        -no-custom \
+        -show-icons \
+        -format i \
+        -p "󰸉 Wallpapers" \
+        -mesg "Select a wallpaper · Esc to cancel" \
+        -theme "$THEME"
+) || exit 0
+
+[[ -n "$selected" ]] || exit 0
+
+image="${files[$selected]}"
+
+if [[ ! -f "$image" ]]; then
+    notify-send "Wallpaper Gallery" "Selected wallpaper no longer exists"
+    exit 1
+fi
+
+# Use the existing wallpaper and Matugen pipeline.
+wallpapercli set "$image"
