@@ -89,6 +89,7 @@ bind("RETURN", app(programs.terminal))     -- Terminal (foot)
 bind("SHIFT + SPACE",  app(programs.menu))         -- App launcher (hyprlauncher)
 bind("B",      app(programs.browser))      -- Web browser
 bind("F",      app(programs.fileManager))  -- File manager (nautilus)
+bind("O",      app(programs.obsidian))     -- Obsidian note-taking app
 
 
 -- ── 4. Web Applications (SUPER + Key) ─────────────────────────────────────────
@@ -231,7 +232,7 @@ bind("U", hl.dsp.send_shortcut({ mods = "", key = "Up" }),   { repeating = true 
 bind("N", hl.dsp.send_shortcut({ mods = "", key = "Down" }), { repeating = true })
 
 -- ── Available Free Letters Cheat Sheet ───────────────────────────────────────
--- SUPER + [A, O, Q] are currently 100% free for new keybindings (Z = volume scroll, X = brightness scroll).
+-- SUPER + [A, Q] are currently 100% free for new keybindings (Z = volume scroll, X = brightness scroll).
 -- SUPER + SHIFT + [any letter except P, S] are also free.
 
 

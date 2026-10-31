@@ -5,6 +5,7 @@ local programs = {
     menu = "hyprlauncher",
     browser = "helium-browser",
     brave = "brave",
+    obsidian = "obsidian",
     super = 'SUPER'
 }
 
