@@ -10,3 +10,7 @@ require("appearance")
 require("input")
 require("keybindings")
 require("window_rules")
+
+-- HyprEmoji config
+package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/hypremoji/?.lua"
+require("hypremoji")
