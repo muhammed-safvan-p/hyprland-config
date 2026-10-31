@@ -10,8 +10,8 @@ local function app(cmd, args)
 end
 
 -- Launches URL in browser app-mode
-local function webapp(url)
-    return app(programs.browser, "--new-window --app='" .. url .. "'")
+local function webapp(url, custom_browser)
+    return app(custom_browser or programs.browser, "--new-window --app='" .. url .. "'")
 end
 
 -- Binds combo with SUPER modifier
@@ -63,8 +63,7 @@ end
 -- SUPER + M             : Shutdown / Exit menu
 bind("M", app("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 
--- SUPER + L             : Lock screen
-bind("L", app("loginctl lock-session || hyprlock --grace 0"))
+-- SUPER + SHIFT + L             : Lock screen
 bind("SHIFT + L", app("loginctl lock-session || hyprlock --grace 0"))
 
 -- SUPER + SHIFT + SPACE : Toggle Waybar status bar
@@ -96,7 +95,7 @@ bind("F",      app(programs.fileManager))  -- File manager (nautilus)
 local webapps = {
     ["SHIFT + E"] = "https://mail.google.com",
     ["SHIFT + C"] = "https://chatgpt.com",
-    ["SHIFT + Y"] = "https://www.youtube.com/",
+    ["SHIFT + Y"] = "https://www.youtube.com/feed/subscriptions",
     ["SHIFT + W"] = "https://web.whatsapp.com",
     ["SHIFT + V"] = "https://meet.google.com/svo-phmi-mrf",
     ["SHIFT + T"] = "https://student.brototype.com/",
@@ -105,6 +104,10 @@ local webapps = {
 for key, url in pairs(webapps) do
     bind(key, webapp(url))
 end
+
+-- Spotify (opens exclusively in Brave app-mode)
+bind("SHIFT + S", webapp("https://open.spotify.com/", programs.brave))
+bind("SHIFT + I", webapp("https://instagram.com/", programs.brave))
 
 
 -- ── 5. Window Management ─────────────────────────────────────────────────────
