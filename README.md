@@ -25,7 +25,7 @@
   * **Screenshots**: `hyprshot` (stored in `~/Photos/screenshorts`).
   * **Terminal**: `foot`.
   * **App Launcher**: `hyprlauncher`.
-  * **Browser**: `helium-browser` (with Chromium `--app` mode support).
+  * **Browser**: `helium-browser` (default web browser and general web apps), `brave` (dedicated for Spotify app mode).
   * **File Manager**: `nautilus`.
   * **Screen Sharing Portal**: `xdg-desktop-portal-hyprland` configured via [`xdph.conf`](file:///home/safvan/.config/hypr/xdph.conf).
 
@@ -99,9 +99,10 @@ The primary modifier across all custom bindings is `SUPER` (Windows key).
 | Keybinding | Action | Command / Mechanism |
 | :--- | :--- | :--- |
 | `SUPER + M` | Exit / Shutdown Menu | Launches `hyprshutdown`, fallback to `hl.dsp.exit()` |
-| `SUPER + L` | **Manual Screen Lock** | `loginctl lock-session || hyprlock` |
+| `SUPER + SHIFT + L` | **Manual Screen Lock** | `loginctl lock-session || hyprlock` |
 | `SUPER + SHIFT + SPACE` | **Toggle / Pin Waybar** | Calls `/home/safvan/.config/waybar/peek.sh toggle` (pins open/closed) |
 | `SUPER + SHIFT` *(Hold)* | **Peek Waybar** | Calls `peek.sh show`; hides automatically when either key is released |
+| `SUPER + W` | **Wallpaper Gallery** | Launches `~/.config/hypr/scripts/wallpaper-selector` (Rofi gallery) |
 | `SUPER + SHIFT + =` (`code:21`) | Next Wallpaper | `wallpapercli next` |
 | `SUPER + SHIFT + -` (`MINUS`) | Previous Wallpaper | `wallpapercli prev` |
 
@@ -112,14 +113,18 @@ The primary modifier across all custom bindings is `SUPER` (Windows key).
 | `SUPER + SPACE` | Application Launcher | `hyprlauncher` |
 | `SUPER + B` | Web Browser | `helium-browser` |
 | `SUPER + F` | File Manager | `nautilus` |
+| `SUPER + O` | Notes / Knowledge Base | `obsidian` |
 
 ### Standalone Web Apps (Chromium App Mode)
 Pressing these shortcuts opens dedicated, borderless web application windows:
-* `SUPER + E` $\rightarrow$ Gmail (`https://mail.google.com`)
-* `SUPER + C` $\rightarrow$ ChatGPT (`https://chatgpt.com`)
-* `SUPER + Y` $\rightarrow$ YouTube (`https://www.youtube.com/`)
-* `SUPER + W` $\rightarrow$ WhatsApp Web (`https://web.whatsapp.com`)
-* `SUPER + G` $\rightarrow$ Google Gemini (`https://gemini.google.com/`)
+* `SUPER + SHIFT + E` $\rightarrow$ Gmail (`https://mail.google.com`)
+* `SUPER + SHIFT + C` $\rightarrow$ ChatGPT (`https://chatgpt.com`)
+* `SUPER + SHIFT + Y` $\rightarrow$ YouTube Subscriptions (`https://www.youtube.com/feed/subscriptions`)
+* `SUPER + SHIFT + W` $\rightarrow$ WhatsApp Web (`https://web.whatsapp.com`)
+* `SUPER + SHIFT + V` $\rightarrow$ Google Meet (`https://meet.google.com/svo-phmi-mrf`)
+* `SUPER + SHIFT + T` $\rightarrow$ Brototype (`https://student.brototype.com/`)
+* `SUPER + SHIFT + S` $\rightarrow$ Spotify Web (`https://open.spotify.com/` - opens via **Brave**)
+* `SUPER + SHIFT + I` $\rightarrow$ Instagram (`https://instagram.com/` - opens via **Brave**)
 
 ### Window Management & Directional Navigation
 | Keybinding | Action |
